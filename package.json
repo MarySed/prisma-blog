@@ -1,25 +1,29 @@
 {
-  "name": "hello-next",
+  "name": "prisma-next-blog",
   "version": "1.0.0",
   "description": "",
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "studio": "yarn prisma studio",
+    "db push": "yarn prisma db push"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "next": "9.5.5",
-    "react": "16.14.0",
+    "next": "^10.2.0",
+    "next-auth": "^3.21.1",
+    "react": "^17.0.2",
     "react-dom": "16.14.0",
     "react-markdown": "5.0.2"
   },
   "devDependencies": {
-    "@types/next-auth": "3.1.14",
+    "@prisma/client": "^2.22.1",
     "@types/node": "14.14.6",
     "@types/react": "16.9.56",
-    "typescript": "4.0.5"
+    "prisma": "^2.22.1",
+    "typescript": "^4.2.4"
   }
 }

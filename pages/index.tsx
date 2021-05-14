@@ -1,57 +1,46 @@
-import React from "react"
-import { GetStaticProps } from "next"
-import Layout from "../components/Layout"
-import Post, { PostProps } from "../components/Post"
+import React from "react";
+import { GetServerSideProps } from "next";
+import Layout from "components/Layout";
+import Post, { PostProps } from "components/Post";
+import prisma from "lib/prisma";
+import styles from "styles/Index.module.css";
 
-export const getStaticProps: GetStaticProps = async () => {
-  const feed = [
-    {
-      id: 1,
-      title: "Prisma is the perfect ORM for Next.js",
-      content: "[Prisma](https://github.com/prisma/prisma) and Next.js go _great_ together!",
-      published: false,
-      author: {
-        name: "Nikolas Burk",
-        email: "burk@prisma.io",
-      },
+export const getServerSideProps: GetServerSideProps = async () => {
+  const feed = await prisma.post.findMany({
+    orderBy: {
+      // Difficulty sorting by ISO strings in publishedAt so switching to id
+      id: "desc"
     },
-  ]
-  return { props: { feed } }
-}
+    where: { published: true },
+    include: {
+      author: {
+        select: { name: true }
+      }
+    }
+  });
+
+  return { props: { feed } };
+};
 
 type Props = {
-  feed: PostProps[]
-}
+  feed: PostProps[];
+};
 
-const Blog: React.FC<Props> = (props) => {
+const Blog = ({ feed }: Props) => {
   return (
     <Layout>
-      <div className="page">
-        <h1>Public Feed</h1>
-        <main>
-          {props.feed.map((post) => (
-            <div key={post.id} className="post">
+      <div>
+        <h1>Timeline</h1>
+        <main className={styles.page}>
+          {feed.map((post) => (
+            <div key={post.id} className={styles.post}>
               <Post post={post} />
             </div>
           ))}
         </main>
       </div>
-      <style jsx>{`
-        .post {
-          background: white;
-          transition: box-shadow 0.1s ease-in;
-        }
-
-        .post:hover {
-          box-shadow: 1px 1px 3px #aaa;
-        }
-
-        .post + .post {
-          margin-top: 2rem;
-        }
-      `}</style>
     </Layout>
-  )
-}
+  );
+};
 
-export default Blog
+export default Blog;

@@ -1,0 +1,14 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.post {
+  background: white;
+  transition: box-shadow 0.1s ease-in;
+}
+
+.post:hover {
+  box-shadow: 0px 0px 8px 2px rgb(216, 216, 216);
+}

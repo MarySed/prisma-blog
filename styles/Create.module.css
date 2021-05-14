@@ -1,0 +1,36 @@
+.back {
+  margin-right: 1rem;
+}
+
+.page {
+  background: white;
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.content {
+  width: 60%;
+  height: 60vh;
+  border-radius: 0.25rem;
+  border: 0.125rem solid rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+}
+
+.title {
+  width: 60%;
+  height: 10vh;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border-radius: 0.25rem;
+  border: 0.125rem solid rgba(0, 0, 0, 0.2);
+}
+
+.submit {
+  background: #ececec;
+  border: 0;
+  padding: 1rem 2rem;
+}

@@ -1,0 +1,17 @@
+.post {
+  background: white;
+  transition: box-shadow 0.1s ease-in;
+  min-width: 100px;
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
+.post:hover {
+  box-shadow: 0px 0px 8px 2px rgb(216, 216, 216);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
